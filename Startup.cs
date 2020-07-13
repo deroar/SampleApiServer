@@ -101,6 +101,7 @@ namespace SampleApiServer
 
             services.AddHttpClient(Configuration);
             services.AddNgeServices(Configuration);
+            services.AddApplicationInsightsTelemetry();
         }
 
         internal static Func<RedirectContext<CookieAuthenticationOptions>, Task> ReplaceRedirector(HttpStatusCode statusCode)
