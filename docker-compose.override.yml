@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  appweb:
+    ports:
+      - 8080:80
+  app:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_SUB_ENVIRONMENT: Local
+  migration:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_SUB_ENVIRONMENT: Local
+  db:
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/mysql/log:/var/log/mysql
+  kvs:
+    ports:
+      - 6379:6379

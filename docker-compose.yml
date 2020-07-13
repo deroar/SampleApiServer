@@ -1,0 +1,73 @@
+version: '3.4'
+
+services:
+  appweb:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: appweb-container
+    environment:
+      NGINX_PORT: 80
+      BACKEND_SERVER: app:5000
+    depends_on:
+      - app
+    networks:
+      - front
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: app-container
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+    depends_on:
+      - db
+      - kvs
+      - migration
+    networks:
+      - front
+      - back
+    tty: true
+  migration:
+    build:
+      context: .
+      dockerfile: ./docker/migration/Dockerfile
+    container_name: migration-container
+    depends_on:
+      - db
+      - kvs
+    entrypoint: wait-for-it db:3306 -- /src/docker/migration/migration.sh
+    networks:
+      - back
+    tty: true
+  db:
+    image: mysql:5.7
+    container_name: db-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sample
+    volumes:
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - ./docker/mysql/sql:/docker-entrypoint-initdb.d
+      - mysql-datastore:/var/lib/mysql
+    restart: always
+    networks:
+      - back
+  kvs:
+    image: redis:5.0
+    container_name: kvs-container
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - ./docker/redis/conf/redis.conf:/etc/redis/redis.conf
+      - redis-datastore:/data
+    restart: always
+    networks:
+      - back
+volumes:
+  mysql-datastore:
+  redis-datastore:
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge
