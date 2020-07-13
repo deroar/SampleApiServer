@@ -84,7 +84,7 @@ namespace SampleApiServer.Util
         /// </summary>
         /// <param name="httpContext">HTTPコンテキスト。</param>
         /// <returns>(long プレイヤーID, string セッションID)のタプル</returns>
-        /// <exception cref="NGEUnauthorizedException">認証されていない場合。</exception>
+        /// <exception cref="UnauthorizedException">認証されていない場合。</exception>
         public static (long playerId, string sessionId) GetPlayerIdAndSessionId(this HttpContext httpContext)
         {
             var claim = httpContext.User.FindFirst(PlayerIdClaimType);

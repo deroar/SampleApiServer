@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace SampleApiServer.Infra.Util.Extensions
 {
     /// <summary>
-    /// IServiceCollectionにNGEの関連の依存性を登録する拡張
+    /// IServiceCollectionに依存性を登録する拡張
     /// </summary>
     public static class IServiceCollectionExtension
     {

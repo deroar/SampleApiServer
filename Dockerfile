@@ -24,4 +24,4 @@ RUN dotnet publish "./SampleApiServer.csproj" -c Release -o /app
 FROM base AS runtime
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "ClientAPI.dll"]
+ENTRYPOINT ["dotnet", "SampleApiServer.dll"]

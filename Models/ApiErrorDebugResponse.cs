@@ -11,7 +11,7 @@ namespace SampleApiServer.Models
     public class ApiErrorDebugResponse
     {
         /// <summary>
-        /// エラーコード。NGEErrorCodeのint表現
+        /// エラーコード。ErrorCodeのint表現
         /// </summary>
         public int Error { get; set; }
 
