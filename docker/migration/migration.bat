@@ -18,7 +18,7 @@ echo "Migration as %ASPNETCORE_ENVIRONMENT%/%ASPNETCORE_SUB_ENVIRONMENT% environ
 cd %APP_DIR%\Infra
 
 echo "PlayerBoundDbContext migrate."
-dotnet ef database update -c PlayerBoundDbContext
+dotnet ef database update --project ../SampleApiServer.csproj
 
 endlocal
 
