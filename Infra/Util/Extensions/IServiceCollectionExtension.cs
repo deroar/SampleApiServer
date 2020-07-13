@@ -22,7 +22,7 @@ namespace SampleApiServer.Infra.Util.Extensions
         /// </summary>
         /// <param name="services">IServiceCollection</param>
         /// <param name="configuration">IConfiguration</param>
-        public static IServiceCollection AddNgeServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddSeverServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHttpClient();
 
@@ -32,29 +32,23 @@ namespace SampleApiServer.Infra.Util.Extensions
             services.AddEntityRepositories();
             services.AddDomainServices();
 
-
             var persistentRedisConf = configuration.GetSection("Redis:Persistent").Get<RedisConfig>();
             services.AddSingleton(new PersistentRedis(persistentRedisConf));
             var ephemeralRedisConf = configuration.GetSection("Redis:Ephemeral").Get<RedisConfig>();
             services.AddSingleton(new EphemeralRedis(ephemeralRedisConf));
 
-            services.Configure<PlayerBoundMySQLConnectionConfig>(configuration.GetSection("MySQL:Player"));
-
             services.Configure<DefaultMySQLConnectionConfig>(configuration.GetSection("MySQL:Default"));
-
-
+            services.Configure<PlayerBoundMySQLConnectionConfig>(configuration.GetSection("MySQL:Player"));
 
             services.AddScoped<ITransactionManager, TransactionManager>();
             services.AddScoped<IPlayerAuthenticationRepository, PlayerAuthenticationCookieRepository>();
-
-            var defaultConf = configuration.GetSection("MySql:Default").Get<DefaultMySQLConnectionConfig>();
-            var playerBoundConnectionConf = configuration.GetSection("MySql:Player").Get<MySQLConnectionConfig>();
-            var playerBoundConf = playerBoundConnectionConf.Merge(defaultConf);
-            services.AddDbContextPool<PlayerBoundDbContext>(o => o.UseMySql(playerBoundConf.ConnectionString));
-
-
             services.AddScoped<IPlayerIdRepository, PlayerIdRepository>();
             services.AddScoped<ISessionRepository, SessionRepository>();
+
+            var defaultConf = configuration.GetSection("MySql:Default").Get<DefaultMySQLConnectionConfig>();
+            var playerBoundConnectionConf = configuration.GetSection("MySql:Player").Get<PlayerBoundMySQLConnectionConfig>();
+            var playerBoundconf = playerBoundConnectionConf.Merge(defaultConf);
+            services.AddDbContextPool<PlayerBoundDbContext>(o => o.UseMySql(playerBoundconf.ConnectionString));
 
             return services;
         }
@@ -99,17 +93,10 @@ namespace SampleApiServer.Infra.Util.Extensions
                     Type redisCacheType = typeof(PlayerEntityCacheRepository<>).MakeGenericType(entityType);
                     services.AddScoped(iCacheType, redisCacheType);
                 }
-
-                // Factoryを登録
-                Type factoryType = entityType.GetNestedType("Factory");
-                if (factoryType != null)
-                {
-                    services.AddScoped(factoryType);
-                }
             }
         }
 
-        // DI コンテナに ドメイン層の Service を追加する
+        // DI コンテナに Service を追加する
         private static void AddDomainServices(this IServiceCollection services)
         {
             // ここに Service を追加していく

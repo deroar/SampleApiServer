@@ -63,6 +63,8 @@ namespace SampleApiServer.Infra.Repositories
             {
                 throw new ArgumentNullException(nameof(entity));
             }
+            // 作成時には自動で詰める
+            entity.CreatedAt = DateTimeOffset.UtcNow;
 
             await dbContext.Set<TEntity>().AddAsync(entity);
             entity.PrepareToSubmit(null);

@@ -38,7 +38,7 @@ namespace SampleApiServer.Migrations
 
                     b.HasKey("PlayerId", "DeviceId");
 
-                    b.ToTable("PlayerAuth");
+                    b.ToTable("PlayerAuths");
                 });
 
             modelBuilder.Entity("SampleApiServer.Models.Entities.PlayerBasic", b =>
