@@ -105,7 +105,7 @@ namespace SampleApiServer.Infra.Transaction
                 noCommit = false;
             }
 
-            // いくつかのコミットだけ失敗してしまった場合は、内部のexceptionをまとめた上でNGEServerExceptionとする
+            // いくつかのコミットだけ失敗してしまった場合は、内部のexceptionをまとめた上でServerExceptionとする
             if (innerExcepions != null)
             {
                 var ae = new AggregateException(innerExcepions);

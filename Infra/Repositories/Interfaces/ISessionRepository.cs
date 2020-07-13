@@ -6,10 +6,6 @@ namespace SampleApiServer.Infra.Repositories
     /// <summary>
     /// セッション情報を保持するリポジトリ。
     /// </summary>
-    /// <remarks>
-    /// NGEでは普通のセッションを使わずに独自のセッション管理をしているので、
-    /// そのセッション情報を保持するためのリポジトリ。
-    /// </remarks>
     public interface ISessionRepository
     {
         /// <summary>

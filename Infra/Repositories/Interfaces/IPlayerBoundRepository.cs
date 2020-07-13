@@ -25,7 +25,7 @@ namespace SampleApiServer.Infra.Repositories
         /// <param name="playerId">プレイヤのID</param>
         /// <param name="otherKeys">他のPrimary Key</param>
         /// <returns>Entity</returns>
-        /// <exception cref="NGENotFoundException">プレイヤーが存在しない場合。</exception>
+        /// <exception cref="NotFoundException">プレイヤーが存在しない場合。</exception>
         Task<T> FindAsync(long playerId, params object[] otherKeys);
 
         /// <summary>
