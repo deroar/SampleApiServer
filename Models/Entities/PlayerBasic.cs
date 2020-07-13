@@ -28,5 +28,25 @@ namespace SampleApiServer.Models.Entities
         /// 最終ログイン時間
         /// </summary>
         public DateTimeOffset  LastLogin { get; private set; }
+
+        /// <summary>
+        /// PlayerBasicのエンティティを作成する
+        /// </summary>
+        /// <param name="playerId">プレイヤーID</param>
+        /// <param name="name">プレイヤー名</param>
+        /// <param name="dateTimeOffset">現在時間</param>
+        /// <returns></returns>
+        public static PlayerBasic Create(long playerId, string name, DateTimeOffset dateTimeOffset)
+        {
+            return new PlayerBasic
+            {
+                PlayerId = playerId,
+                Name = name,
+                TutorialProgress = 0,
+                Stamina = 10,
+                LastStaminaUpdatedAt = dateTimeOffset,
+                LastLogin = default,
+            };
+        }
     }
 }

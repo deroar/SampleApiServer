@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SampleApiServer.Infra.Transaction;
 
 namespace SampleApiServer.Controllers.players
 {
@@ -11,11 +12,14 @@ namespace SampleApiServer.Controllers.players
     [ApiController]
     public partial class PlayersController : ControllerBase
     {
+        private readonly ITransactionManager transactionManager;
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public PlayersController()
+        public PlayersController(ITransactionManager transactionManager)
         {
+            this.transactionManager = transactionManager;
         }
     }
 }

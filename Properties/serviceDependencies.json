@@ -6,7 +6,9 @@
       "ignored": "true"
     },
     "appInsights1": {
-      "type": "appInsights"
+      "type": "appInsights",
+      "suggestion": "true",
+      "ignored": "true"
     }
   }
 }
