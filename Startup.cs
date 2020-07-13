@@ -100,8 +100,7 @@ namespace SampleApiServer
             });
 
             services.AddHttpClient(Configuration);
-            services.AddNgeServices(Configuration);
-            services.AddApplicationInsightsTelemetry();
+            services.AddSeverServices(Configuration);
         }
 
         internal static Func<RedirectContext<CookieAuthenticationOptions>, Task> ReplaceRedirector(HttpStatusCode statusCode)
@@ -157,10 +156,7 @@ namespace SampleApiServer
 
             app.UseRouting();
 
-            //app.UseMiddleware<EnableBufferingMiddleware>();
-            //app.UseAccessLogMiddleware();
             app.UseMiddleware<ErrorHandlingMiddleware>();
-            //app.UseAppVersionCheckMiddleware();
 
             app.UseAuthentication();
             app.UseAuthorization();
