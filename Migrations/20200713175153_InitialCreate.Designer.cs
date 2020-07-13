@@ -9,7 +9,7 @@ using SampleApiServer.Infra.DbContexts;
 namespace SampleApiServer.Migrations
 {
     [DbContext(typeof(PlayerBoundDbContext))]
-    [Migration("20200713115548_InitialCreate")]
+    [Migration("20200713175153_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace SampleApiServer.Migrations
 
                     b.HasKey("PlayerId", "DeviceId");
 
-                    b.ToTable("PlayerAuth");
+                    b.ToTable("PlayerAuths");
                 });
 
             modelBuilder.Entity("SampleApiServer.Models.Entities.PlayerBasic", b =>

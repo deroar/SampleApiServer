@@ -8,7 +8,7 @@ namespace SampleApiServer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "PlayerAuth",
+                name: "PlayerAuths",
                 columns: table => new
                 {
                     PlayerId = table.Column<long>(nullable: false),
@@ -19,7 +19,7 @@ namespace SampleApiServer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlayerAuth", x => new { x.PlayerId, x.DeviceId });
+                    table.PrimaryKey("PK_PlayerAuths", x => new { x.PlayerId, x.DeviceId });
                 });
 
             migrationBuilder.CreateTable(
@@ -49,7 +49,7 @@ namespace SampleApiServer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PlayerAuth");
+                name: "PlayerAuths");
 
             migrationBuilder.DropTable(
                 name: "PlayerBasics");

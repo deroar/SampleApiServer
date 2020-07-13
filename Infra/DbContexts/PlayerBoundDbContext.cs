@@ -8,48 +8,20 @@ namespace SampleApiServer.Infra.DbContexts
 
         #region Entities
 
+        public DbSet<PlayerAuth> PlayerAuths { get; set; }
         public DbSet<PlayerBasic> PlayerBasics { get; set; }
 
         #endregion
-
-        #region メンバ変数
-
-        /// <summary>
-        /// Mysql接続文字列
-        /// </summary>
-        private readonly string ConnectionString;
-
-        #endregion
-
-
-        /// <summary>
-        /// 指定されたMySQLに接続する。
-        /// </summary>
-        /// <param name="connectionString">MySQLの接続文字列。</param>
-        public PlayerBoundDbContext(string connectionString)
-        {
-            this.ConnectionString = connectionString;
-        }
 
         /// <summary>
         /// サブクラスでの拡張用のコンストラクタ。
         /// </summary>
         /// <param name="options">DBコンテキストのオプション。</param>
-        protected PlayerBoundDbContext(DbContextOptions options) : base(options)
+        public PlayerBoundDbContext(DbContextOptions options) : base(options)
         {
         }
 
         #region メソッド
-
-        /// <summary>
-        /// DBコンテキストの設定処理。
-        /// </summary>
-        /// <param name="optionsBuilder">オプションのビルダー。</param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseMySql(ConnectionString);
-        }
 
         /// <summary>
         /// OnModelCreatingのオーバーライド
