@@ -7,15 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SampleApiServer.Controllers.players
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public partial class PlayersController : ControllerBase
     {
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        public PlayersController()
-        {
-        }
     }
 }

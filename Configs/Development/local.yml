@@ -1,0 +1,21 @@
+MySQL:
+  Default: &DefaultDatabase
+    Server: "db-container"
+    Database: sample
+    Password: root
+    User: root
+  Player: *DefaultDatabase
+Redis:
+  Ephemeral:
+    Hosts:
+      - kvs-container
+  Persistent:
+    Hosts:
+      - kvs-container
+Session:
+  RedisServer: "kvs-container:6379"
+ServiceLocation:
+  General:
+    ApiServerUrl: "http://127.0.0.1:8080/"
+AppVersionCheck:
+  Enabled: false

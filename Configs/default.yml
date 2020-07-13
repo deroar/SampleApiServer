@@ -1,0 +1,23 @@
+MySQL:
+  Default: &DefaultDatabase
+    Server: null
+    Database: null
+    Password: null
+    User: null
+  Player: *DefaultDatabase
+Redis:
+  Ephemeral:
+    Hosts: []
+    Db: 0
+  Persistent:
+    Hosts: []
+    Db: 1
+Session:
+  RedisServer: null
+  DefaultDatabase: 15
+  ExpirationSec: 86400
+ServiceLocation:
+  General:
+    ApiServerUrl: null
+AppVersionCheck:
+  Enabled: true
