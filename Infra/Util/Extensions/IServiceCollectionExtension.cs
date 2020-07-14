@@ -5,6 +5,7 @@ using SampleApiServer.Infra.DbContexts;
 using SampleApiServer.Infra.Models;
 using SampleApiServer.Infra.Repositories;
 using SampleApiServer.Infra.Transaction;
+using SampleApiServer.Models;
 using SampleApiServer.Models.Entities;
 using SampleApiServer.Services;
 using System;
@@ -39,6 +40,7 @@ namespace SampleApiServer.Infra.Util.Extensions
 
             services.Configure<DefaultMySQLConnectionConfig>(configuration.GetSection("MySQL:Default"));
             services.Configure<PlayerBoundMySQLConnectionConfig>(configuration.GetSection("MySQL:Player"));
+            services.Configure<ServiceLocation>(configuration.GetSection("ServiceLocation"));
 
             services.AddScoped<ITransactionManager, TransactionManager>();
             services.AddScoped<IPlayerAuthenticationRepository, PlayerAuthenticationCookieRepository>();
@@ -103,6 +105,7 @@ namespace SampleApiServer.Infra.Util.Extensions
             var serviceTypes = new Type[]
             {
                 typeof(RegistrationService),
+                typeof(LoginService)
             };
 
             foreach (Type serviceType in serviceTypes)
