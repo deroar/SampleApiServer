@@ -26,7 +26,6 @@ namespace SampleApiServer.Filters
             {
                 return;
             }
-            var playerId = afterContext.HttpContext.GetPlayerIdOrNull();
             var localOffset = DateTimeOffset.Now;
 
             // TODO: Hash(nonce)はいったん空設定

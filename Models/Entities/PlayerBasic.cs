@@ -27,7 +27,7 @@ namespace SampleApiServer.Models.Entities
         /// <summary>
         /// 最終ログイン時間
         /// </summary>
-        public DateTimeOffset  LastLogin { get; private set; }
+        public DateTimeOffset  LastLogin { get; set; }
 
         /// <summary>
         /// PlayerBasicのエンティティを作成する

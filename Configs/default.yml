@@ -19,5 +19,6 @@ Session:
 ServiceLocation:
   General:
     ApiServerUrl: null
+    AssetUrl: null
 AppVersionCheck:
   Enabled: true

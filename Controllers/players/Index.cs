@@ -8,6 +8,9 @@ using SampleApiServer.Infra.Transaction;
 
 namespace SampleApiServer.Controllers.players
 {
+    /// <summary>
+    /// プレイヤーコントローラ
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public partial class PlayersController : ControllerBase

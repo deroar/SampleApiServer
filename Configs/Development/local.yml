@@ -17,5 +17,6 @@ Session:
 ServiceLocation:
   General:
     ApiServerUrl: "http://127.0.0.1:8080/"
+    AssetUrl: "https://s3-ap-northeast-1.amazonaws.com/"
 AppVersionCheck:
   Enabled: false
